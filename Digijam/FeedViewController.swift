@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FeedViewController.swift
 //  Digijam
 //
 //  Created by Zachary Drossman on 11/13/14.
@@ -7,19 +7,36 @@
 //
 
 import UIKit
+import Alamofire
 
-class ViewController: UIViewController {
-
+class FeedViewController: UIViewController {
+    
+    lazy var userDefaults : NSUserDefaults = {
+        let tempUserDefaults = NSUserDefaults.standardUserDefaults()
+        return tempUserDefaults
+    }()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+            }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
+    
+    
+    
+    
 }
 
