@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		31074BE81A156B1F003F7557 /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31074BE61A156B1F003F7557 /* GithubAPI.swift */; };
 		31074BE91A156B1F003F7557 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31074BE71A156B1F003F7557 /* LoginViewController.swift */; };
-		317603061A1BD52800F877F7 /* PrivateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317603051A1BD52800F877F7 /* PrivateKeys.swift */; };
 		31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC741A1566E000C74702 /* AppDelegate.swift */; };
 		31A0AC771A1566E000C74702 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC761A1566E000C74702 /* FeedViewController.swift */; };
 		31A0AC7A1A1566E000C74702 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31A0AC781A1566E000C74702 /* Main.storyboard */; };
@@ -18,6 +17,7 @@
 		31A0AC8B1A1566E000C74702 /* DigijamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC8A1A1566E000C74702 /* DigijamTests.swift */; };
 		31A0ACA01A1567A700C74702 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 31A0AC9A1A15677B00C74702 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		31E424761A1B98530075256E /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E424751A1B98530075256E /* LoginProtocol.swift */; };
+		D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,6 @@
 /* Begin PBXFileReference section */
 		31074BE61A156B1F003F7557 /* GithubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
 		31074BE71A156B1F003F7557 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		317603051A1BD52800F877F7 /* PrivateKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateKeys.swift; sourceTree = "<group>"; };
 		31A0AC6F1A1566E000C74702 /* Digijam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digijam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A0AC731A1566E000C74702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31A0AC741A1566E000C74702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		31A0AC8A1A1566E000C74702 /* DigijamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigijamTests.swift; sourceTree = "<group>"; };
 		31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		31E424751A1B98530075256E /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
+		D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivateKeys.swift; path = ignoreMe/PrivateKeys.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				31A0AC741A1566E000C74702 /* AppDelegate.swift */,
-				317603051A1BD52800F877F7 /* PrivateKeys.swift */,
+				D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */,
 				31A0AC761A1566E000C74702 /* FeedViewController.swift */,
 				31074BE61A156B1F003F7557 /* GithubAPI.swift */,
 				31074BE71A156B1F003F7557 /* LoginViewController.swift */,
@@ -301,7 +301,7 @@
 				31E424761A1B98530075256E /* LoginProtocol.swift in Sources */,
 				31074BE81A156B1F003F7557 /* GithubAPI.swift in Sources */,
 				31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */,
-				317603061A1BD52800F877F7 /* PrivateKeys.swift in Sources */,
+				D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
