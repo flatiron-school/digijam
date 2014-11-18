@@ -10,7 +10,7 @@
 *.pbxuser
 xcuserdata
 *.xccheckout
-Digijam/PrivateKeys.*
+Digijam/PrivateKeys.swift
 # Build products
 build/
 *.o
