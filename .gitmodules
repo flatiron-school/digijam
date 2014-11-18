@@ -3,4 +3,4 @@
 	url = https://github.com/Alamofire/Alamofire.git
 [submodule "ignoreMe"]
 	path = ignoreMe
-	url = https://github.com/flatiron-school/DigijamPrivateKeys/DigijamPrivateKeys.git
+	url = https://github.com/flatiron-school/DigijamPrivateKeysDigijamPrivateKeys.git
