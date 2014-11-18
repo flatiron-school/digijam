@@ -1,6 +1,6 @@
 [submodule "Alamofire"]
 	path = Alamofire
 	url = https://github.com/Alamofire/Alamofire.git
-[submodule "ignoreme"]
-	path = ignoreme
-	url = /Users/zdrossman/Developer/PrivateKeys/DigijamPrivateKeys
+[submodule "ignoreMe"]
+	path = ignoreMe
+	url = ./DigijamPrivateKeys/
