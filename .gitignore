@@ -10,7 +10,7 @@
 *.pbxuser
 xcuserdata
 *.xccheckout
-
+PrivateKeys.*
 # Build products
 build/
 *.o
