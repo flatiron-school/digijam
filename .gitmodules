@@ -3,4 +3,4 @@
 	url = https://github.com/Alamofire/Alamofire.git
 [submodule "ignoreMe"]
 	path = ignoreMe
-	url = ./DigijamPrivateKeys/
+	url = /Users/zdrossman/Developer/PrivateKeys/DigijamPrivateKeys
