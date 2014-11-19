@@ -18,6 +18,7 @@
 		31A0ACA01A1567A700C74702 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 31A0AC9A1A15677B00C74702 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		31E424761A1B98530075256E /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E424751A1B98530075256E /* LoginProtocol.swift */; };
 		D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */; };
+		D8C986B11A1BFA850093C217 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		31E424751A1B98530075256E /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
 		D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivateKeys.swift; path = ignoreMe/PrivateKeys.swift; sourceTree = SOURCE_ROOT; };
+		D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				31A0AC741A1566E000C74702 /* AppDelegate.swift */,
 				D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */,
 				31A0AC761A1566E000C74702 /* FeedViewController.swift */,
+				D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */,
 				31074BE61A156B1F003F7557 /* GithubAPI.swift */,
 				31074BE71A156B1F003F7557 /* LoginViewController.swift */,
 				31E424751A1B98530075256E /* LoginProtocol.swift */,
@@ -302,6 +305,7 @@
 				31074BE81A156B1F003F7557 /* GithubAPI.swift in Sources */,
 				31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */,
 				D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */,
+				D8C986B11A1BFA850093C217 /* FirebaseAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
