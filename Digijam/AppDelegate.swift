@@ -58,8 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let accessTokenUrl = "https://github.com/login/oauth/access_token"
         
-        let privateKey = PrivateKeys()
-        
         let accessTokenParams = ["client_id":PrivateKeys.githubClientID, "client_secret":PrivateKeys.githubClientSecret, "code":accessCode]
         
         var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
