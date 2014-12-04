@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -50,32 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         
-        var accessCode = String()
-        
-        if let tempURLString = url.absoluteString {
-            accessCode = tempURLString.substringWithRange(Range<String.Index>(start: advance(tempURLString.startIndex, 30), end: tempURLString.endIndex))
-        }
-        
-        let accessTokenUrl = "https://github.com/login/oauth/access_token"
-        
-        let privateKey = PrivateKeys()
-        
-        let accessTokenParams = ["client_id":privateKey.githubClientID, "client_secret":privateKey.githubClientSecret, "code":accessCode]
-        
-        var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
-        defaultHeaders["Accept"] = "application/json"
-
-        Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = ["Accept": "application/json"]
-        Alamofire.request(.POST, accessTokenUrl, parameters: accessTokenParams).response({ (request, response, data, error) in
-            
-            var accessTokenDictionary = self.parseJSON(data as NSData)
-            
-            self.userDefaults.setObject(accessTokenDictionary["access_token"] as? String, forKey: "access_token")
-            
-            self.userDefaults.synchronize()
-            
-        })
-        
+        GithubAPI.getAccessViaURL(url)
         
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
@@ -86,12 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
 }
     
-    func parseJSON(inputData: NSData) -> NSDictionary{
-        var error: NSError?
-        var dataDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
-        return dataDictionary
-    }
-    
+        
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
