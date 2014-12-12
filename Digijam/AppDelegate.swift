@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         
         GithubAPI.getAccessViaURL(url)
-        
+
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         var feedViewController = storyboard.instantiateViewControllerWithIdentifier("FeedViewController") as FeedViewController
