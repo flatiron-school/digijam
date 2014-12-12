@@ -27,9 +27,7 @@ class GithubAPI: NSObject {
         
         let accessTokenUrl = "https://github.com/login/oauth/access_token"
         
-        let privateKey = PrivateKeys()
-        
-        let accessTokenParams = ["client_id":privateKey.githubClientID, "client_secret":privateKey.githubClientSecret, "code":accessCode]
+        let accessTokenParams = ["client_id":PrivateKeys.githubClientID, "client_secret":PrivateKeys.githubClientSecret, "code":accessCode]
         
         var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
         defaultHeaders["Accept"] = "application/json"
