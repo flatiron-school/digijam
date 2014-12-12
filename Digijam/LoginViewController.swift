@@ -16,8 +16,7 @@ class LoginViewController: UIViewController {
         
     var escapedUrlString = unescapedUrlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
         
-
-        let githubAuthURL = NSURL(string: "https://github.com/login/oauth/authorize?client_id=" + PrivateKeys.githubClientID + "&client_secret=" + PrivateKeys.githubClientSecret + "&scope=repo&redirect_uri=" + escapedUrlString!)
+    let githubAuthURL = NSURL(string: "https://github.com/login/oauth/authorize?client_id=" + PrivateKeys.githubClientID + "&client_secret=" + PrivateKeys.githubClientSecret + "&scope=repo&redirect_uri=" + escapedUrlString!)
         
     UIApplication.sharedApplication().openURL(githubAuthURL!)
     
