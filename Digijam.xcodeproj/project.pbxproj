@@ -17,7 +17,12 @@
 		31A0AC8B1A1566E000C74702 /* DigijamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC8A1A1566E000C74702 /* DigijamTests.swift */; };
 		31A0ACA01A1567A700C74702 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 31A0AC9A1A15677B00C74702 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		31E424761A1B98530075256E /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E424751A1B98530075256E /* LoginProtocol.swift */; };
+		D8027E661A26126F00D38645 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8027E651A26126F00D38645 /* User.swift */; };
+		D808B4BE1A237A68004BF515 /* Digijam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */; };
+		D808B4C11A237BC1004BF515 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808B4C01A237BC1004BF515 /* CoreDataManager.swift */; };
+		D808B4C31A237BCE004BF515 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D808B4C21A237BCE004BF515 /* CoreData.framework */; };
 		D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */; };
+		D8C986B11A1BFA850093C217 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +85,12 @@
 		31A0AC8A1A1566E000C74702 /* DigijamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigijamTests.swift; sourceTree = "<group>"; };
 		31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		31E424751A1B98530075256E /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
+		D8027E651A26126F00D38645 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D808B4BD1A237A68004BF515 /* Digijam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Digijam.xcdatamodel; sourceTree = "<group>"; };
+		D808B4C01A237BC1004BF515 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		D808B4C21A237BCE004BF515 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivateKeys.swift; path = ignoreMe/PrivateKeys.swift; sourceTree = SOURCE_ROOT; };
+		D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D808B4C31A237BCE004BF515 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,8 +135,12 @@
 			isa = PBXGroup;
 			children = (
 				31A0AC741A1566E000C74702 /* AppDelegate.swift */,
+				D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */,
+				D8027E651A26126F00D38645 /* User.swift */,
+				D808B4C01A237BC1004BF515 /* CoreDataManager.swift */,
 				D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */,
 				31A0AC761A1566E000C74702 /* FeedViewController.swift */,
+				D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */,
 				31074BE61A156B1F003F7557 /* GithubAPI.swift */,
 				31074BE71A156B1F003F7557 /* LoginViewController.swift */,
 				31E424751A1B98530075256E /* LoginProtocol.swift */,
@@ -140,6 +155,7 @@
 		31A0AC721A1566E000C74702 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D808B4C21A237BCE004BF515 /* CoreData.framework */,
 				31A0AC731A1566E000C74702 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -297,11 +313,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				31074BE91A156B1F003F7557 /* LoginViewController.swift in Sources */,
+				D808B4BE1A237A68004BF515 /* Digijam.xcdatamodeld in Sources */,
 				31A0AC771A1566E000C74702 /* FeedViewController.swift in Sources */,
 				31E424761A1B98530075256E /* LoginProtocol.swift in Sources */,
 				31074BE81A156B1F003F7557 /* GithubAPI.swift in Sources */,
 				31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */,
+				D808B4C11A237BC1004BF515 /* CoreDataManager.swift in Sources */,
 				D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */,
+				D8027E661A26126F00D38645 /* User.swift in Sources */,
+				D8C986B11A1BFA850093C217 /* FirebaseAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +530,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D808B4BD1A237A68004BF515 /* Digijam.xcdatamodel */,
+			);
+			currentVersion = D808B4BD1A237A68004BF515 /* Digijam.xcdatamodel */;
+			path = Digijam.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 31A0AC671A1566E000C74702 /* Project object */;
 }

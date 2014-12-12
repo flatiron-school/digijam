@@ -11,12 +11,6 @@ import Alamofire
 
 class FeedViewController: UIViewController {
     
-    lazy var userDefaults : NSUserDefaults = {
-        let tempUserDefaults = NSUserDefaults.standardUserDefaults()
-        return tempUserDefaults
-    }()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
