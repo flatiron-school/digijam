@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class GithubAPI {
     
@@ -52,13 +53,29 @@ class GithubAPI {
             
         Locksmith.saveData(["access_token": accessTokenResults["access_token"] as String], forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
 
-            //self.getUserDefaults().setObject(accessTokenDictionary["access_token"] as? String, forKey: "access_token")
+            GithubAPI.getUser()
+        })
+    }
+    
+    class func getAuthenticatedUserData() {
+
+        var user : User
+        let userDetailsURL = "https://api.github.com/user?"
+        let accessTokenDictionary : [String:String]? = GithubAPI.getAccessToken().0
+        Alamofire.request(.GET, userDetailsURL, parameters:accessTokenDictionary ).response({(request, response, data, error) in
             
-            //self.getUserDefaults().synchronize()
+            var userResult = self.parseJSON(data as NSData)
+            
+            //need to check if the user is already in our datastore so we don't add duplicates here!
             
         })
     }
     
+    
+    class func saveUserDictionaryAsUser(githubUser: NSDictionary) {
+        
+    }
+
     class func parseJSON(inputData: NSData) -> NSDictionary{
         var error: NSError?
         var dataDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
