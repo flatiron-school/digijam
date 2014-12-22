@@ -25,12 +25,12 @@ class GithubAPI {
     }
     
     class func getAccessViaURL(githubURL: NSURL) {
-        
+
         var service = "githubAccess"
         var accessTokenDictionary = "accessTokenDictionary"
         var userAccount = "default"
         var type : RequestType = .Read
-        
+
         var accessCode = String()
         
         if let tempURLString = githubURL.absoluteString {
@@ -41,14 +41,10 @@ class GithubAPI {
         
         let accessTokenParams = ["client_id":PrivateKeys.githubClientID, "client_secret":PrivateKeys.githubClientSecret, "code":accessCode]
         
-        var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
-        defaultHeaders["Accept"] = "application/json"
-        
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = ["Accept": "application/json"]
         Alamofire.request(.POST, accessTokenUrl, parameters: accessTokenParams).response({ (request, response, data, error) in
             
         var accessTokenResults = self.parseJSON(data as NSData)
-            
         Locksmith.saveData(["access_token": accessTokenResults["access_token"] as String], forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
 
             GithubAPI.getAuthenticatedUserData()
@@ -70,6 +66,7 @@ class GithubAPI {
                     //what do we want to do here?
                 })
             }
+
         })
     }
 
@@ -78,6 +75,4 @@ class GithubAPI {
         var dataDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
         return dataDictionary
     }
-
-    
 }
