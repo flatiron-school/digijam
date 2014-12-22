@@ -13,8 +13,7 @@ class GithubAPI: NSObject {
     
     class func getUserDefaults () -> NSUserDefaults
     {
-        let tempDefaults = NSUserDefaults.standardUserDefaults()
-        return tempDefaults
+        return NSUserDefaults.standardUserDefaults()
     }
     
     class func getAccessViaURL(githubURL: NSURL) {
@@ -29,18 +28,14 @@ class GithubAPI: NSObject {
         
         let accessTokenParams = ["client_id":PrivateKeys.githubClientID, "client_secret":PrivateKeys.githubClientSecret, "code":accessCode]
         
-        var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
-        defaultHeaders["Accept"] = "application/json"
-        
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = ["Accept": "application/json"]
         Alamofire.request(.POST, accessTokenUrl, parameters: accessTokenParams).response({ (request, response, data, error) in
             
-                var accessTokenDictionary = self.parseJSON(data as NSData)
+            var accessTokenDictionary = self.parseJSON(data as NSData)
             
             self.getUserDefaults().setObject(accessTokenDictionary["access_token"] as? String, forKey: "access_token")
             
             self.getUserDefaults().synchronize()
-            
         })
     }
     
@@ -49,6 +44,4 @@ class GithubAPI: NSObject {
         var dataDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
         return dataDictionary
     }
-
-    
 }
