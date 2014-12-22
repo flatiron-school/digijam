@@ -9,15 +9,29 @@
 import UIKit
 import Alamofire
 
-class GithubAPI: NSObject {
+class GithubAPI {
     
-    class func getUserDefaults () -> NSUserDefaults
+
+    
+    class func getAccessToken () -> ([String : String]?, error : NSError?)
     {
-        return NSUserDefaults.standardUserDefaults()
+        var service = "githubAccess"
+        var accessTokenDictionary = "accessTokenDictionary"
+        var userAccount = "default"
+        var type : RequestType = .Read
+        
+        let (accessTokenData, error) = Locksmith.loadData(forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
+        
+        return (accessTokenData as [String: String]?, error)
     }
     
     class func getAccessViaURL(githubURL: NSURL) {
-        
+
+        var service = "githubAccess"
+        var accessTokenDictionary = "accessTokenDictionary"
+        var userAccount = "default"
+        var type : RequestType = .Read
+
         var accessCode = String()
         
         if let tempURLString = githubURL.absoluteString {
@@ -31,11 +45,8 @@ class GithubAPI: NSObject {
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = ["Accept": "application/json"]
         Alamofire.request(.POST, accessTokenUrl, parameters: accessTokenParams).response({ (request, response, data, error) in
             
-            var accessTokenDictionary = self.parseJSON(data as NSData)
-            
-            self.getUserDefaults().setObject(accessTokenDictionary["access_token"] as? String, forKey: "access_token")
-            
-            self.getUserDefaults().synchronize()
+            var accessTokenResults = self.parseJSON(data as NSData)
+            Locksmith.saveData(["access_token": accessTokenResults["access_token"] as String], forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
         })
     }
     
