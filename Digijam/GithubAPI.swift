@@ -12,8 +12,6 @@ import CoreData
 
 class GithubAPI {
     
-
-    
     class func getAccessToken () -> ([String : String]?, error : NSError?)
     {
         var service = "githubAccess"
@@ -53,7 +51,7 @@ class GithubAPI {
             
         Locksmith.saveData(["access_token": accessTokenResults["access_token"] as String], forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
 
-            GithubAPI.getUser()
+            GithubAPI.getAuthenticatedUserData()
         })
     }
     
@@ -66,14 +64,13 @@ class GithubAPI {
             
             var userResult = self.parseJSON(data as NSData)
             
-            //need to check if the user is already in our datastore so we don't add duplicates here!
-            
+            if let githubID = userResult["id"] as? Int {
+                
+                UserManager.findOrCreateUserWithGithubID(String(githubID), completion: { (error) -> Void in
+                    //what do we want to do here?
+                })
+            }
         })
-    }
-    
-    
-    class func saveUserDictionaryAsUser(githubUser: NSDictionary) {
-        
     }
 
     class func parseJSON(inputData: NSData) -> NSDictionary{
