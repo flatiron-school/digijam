@@ -11,10 +11,10 @@ import CoreData
 
 class User: NSManagedObject {
 
-    @NSManaged var courseName: String
+    @NSManaged var courseName: String?
     @NSManaged var firebaseID: String?
-    @NSManaged var firstName: String
+    @NSManaged var firstName: String?
     @NSManaged var githubID: String
-    @NSManaged var lastName: String
+    @NSManaged var lastName: String?
 
 }
