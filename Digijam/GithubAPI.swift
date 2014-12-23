@@ -8,10 +8,9 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class GithubAPI {
-    
-
     
     class func getAccessToken () -> ([String : String]?, error : NSError?)
     {
@@ -47,9 +46,30 @@ class GithubAPI {
             
         var accessTokenResults = self.parseJSON(data as NSData)
         Locksmith.saveData(["access_token": accessTokenResults["access_token"] as String], forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
+
+            GithubAPI.getAuthenticatedUserData()
         })
     }
     
+    class func getAuthenticatedUserData() {
+
+        var user : User
+        let userDetailsURL = "https://api.github.com/user?"
+        let accessTokenDictionary : [String:String]? = GithubAPI.getAccessToken().0
+        Alamofire.request(.GET, userDetailsURL, parameters:accessTokenDictionary ).response({(request, response, data, error) in
+            
+            var userResult = self.parseJSON(data as NSData)
+            
+            if let githubID = userResult["id"] as? Int {
+                
+                UserManager.findOrCreateUserWithGithubID(String(githubID), completion: { (error) -> Void in
+                    //what do we want to do here?
+                })
+            }
+
+        })
+    }
+
     class func parseJSON(inputData: NSData) -> NSDictionary{
         var error: NSError?
         var dataDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
