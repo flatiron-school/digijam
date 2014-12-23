@@ -9,7 +9,9 @@
 import UIKit
 import Alamofire
 
+typealias CreatorComplete = (firebaseID : String, success : Bool) -> Void
 typealias FinderComplete = (userDictionary: [String : AnyObject]?, fireBaseID: String?) -> Void
+
 class FirebaseAPI: NSObject {
 
 
@@ -50,16 +52,32 @@ class FirebaseAPI: NSObject {
         }
 
     }
+
+    // MARK: Creators
+
+    class func findOrCreateUser(userDictionary: [String : AnyObject], completionBlock: CreatorComplete)
+    {
+        if let githubID = userDictionary["githubID"] as? String
+        {
+            self.findUserByGithubID(githubID, completionBlock: { (filledUserDictionary, fireBaseID) -> Void in
+                if let fireBaseID = fireBaseID{
+                    completionBlock(firebaseID: fireBaseID, success: true)
+                }
+                else
+                {
+                    self.createUser(userDictionary, completionBlock: { (firebaseID, success) -> Void in
+                        completionBlock(firebaseID: firebaseID, success: success)
+                    })
+                }
+            })
         }
     }
 
-    class func post (user : User, completionBlock: ((userID : String, success : Bool) -> Void)?)
+    class func createUser (userDictionary : [String : AnyObject], completionBlock: CreatorComplete?)
     {
         let requestURL = NSURL(string: "\(PrivateKeys.FIREBASEURL)/users.json")
         let request = NSMutableURLRequest(URL: requestURL!)
         request.HTTPMethod = "POST"
-
-        let userDictionary = ["firstName": user.firstName, "lastName": user.lastName, "courseName":user.courseName, "githubID":user.githubID]
 
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(userDictionary, options: nil, error: nil)
 
@@ -68,11 +86,9 @@ class FirebaseAPI: NSObject {
             {
                 if let completion = completionBlock
                 {
-                    completion(userID: jsonresponse["name"]!, success:true)
+                    completion(firebaseID: jsonresponse["name"]!, success:true)
                 }
             }
         }
-
-
     }
 }
