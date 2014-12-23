@@ -56,33 +56,6 @@ class UserManager: NSObject {
     class func createUserWithGithubID(githubID: String, context: NSManagedObjectContext) {
         
         var user = User.insert(context)
-        
-        if let githubID: String = userResult["id"] as? String {
-            user.githubID = githubID
-        }
-        
-        if let username: String = userResult["name"] as? String {
-            
-            let startOfFirstName = username.startIndex
-            //assumes no middle name for now, can revamp this implementation to account for various names later
-            let endOfFirstName = find(username, " ")
-            let beginningOfLastName = advance(start: endOfFirstName, n: 1, nil)
-            
-            let endOfLastName = username.endIndex
-            
-            if let endOfFirstName = endOfFirstName {
-                user.firstName = username.substringWithRange(Range(start: startOfFirstName,end: endOfFirstName))
-                
-                user.lastName = username.substringWithRange(Range(start:beginningOfLastName, end: endOfLastName))
-            }
-            else {
-                //uses login (i.e. actual username) if the user's name is not complete, as a starting point.
-                if let firstName = userResult["login"] as String? {
-                    user.firstName = firstName
-                }
-            }
-        }
-        
     }
     
 }
