@@ -83,6 +83,7 @@
 		3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 		315728651A48710E0010C895 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		315728831A49C8990010C895 /* User+GithubConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+GithubConverter.swift"; path = "../Alamofire/User+GithubConverter.swift"; sourceTree = "<group>"; };
+		315728831A49C8990010C895 /* User+GithubConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+GithubConverter.swift"; sourceTree = "<group>"; };
 		31A0AC6F1A1566E000C74702 /* Digijam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digijam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A0AC731A1566E000C74702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31A0AC741A1566E000C74702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
