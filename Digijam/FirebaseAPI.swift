@@ -9,31 +9,76 @@
 import UIKit
 import Alamofire
 
+typealias CreatorComplete = (firebaseID : String, success : Bool) -> Void
+typealias FinderComplete = (userDictionary: [String : AnyObject]?, fireBaseID: String?) -> Void
+
 class FirebaseAPI: NSObject {
-    class func sendTestUser ()
+
+
+    // MARK: Finders
+
+    class func findUserByGithubID(githubID: String, completionBlock: FinderComplete)
     {
-        let requestString = "\(PrivateKeys.FIREBASEURL)/users.json"
-        let requestURL = NSURL(string: requestString)
-        let request = NSMutableURLRequest(URL: requestURL!)
-        request.HTTPMethod = "POST"
+        self.findBy("githubID", value: githubID, completionBlock: completionBlock)
+    }
 
-        let userDictionary = ["firstName": "Joe", "lastName": "Burgess"]
+    class func findUserByFirebaseID(firebaseID: String, completionBlock: FinderComplete)
+    {
+        // the $key is to handle the fact that the firebaseID is actually the key of the dictionary which contains the data
+        self.findBy("$key", value: firebaseID, completionBlock: completionBlock)
+    }
 
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(userDictionary, options: nil, error: nil)
+    private class func findBy(key: String, value: String, completionBlock: FinderComplete)
+    {
+        let requestURL = "\(PrivateKeys.FIREBASEURL)/users.json"
 
+        let requestParams: [String:AnyObject] = ["orderBy":"\"\(key)\"", "equalTo":"\"\(value)\"","limitToFirst":1]
 
-        Alamofire.request(request).responseJSON { (request, response, JSON, error) -> Void in
-            println(JSON)
+        Alamofire.request(.GET, requestURL, parameters: requestParams, encoding: ParameterEncoding.URL).responseJSON { (httpRequest, httpResponse, JSON, error) -> Void in
+            if let JSON: [String:AnyObject] = JSON as? [String:AnyObject]
+            {
+                if let firebaseID: String = JSON.keys.first
+                {
+                    var userDictionary: [String : AnyObject] = JSON[firebaseID] as [String : AnyObject]
+                    completionBlock(userDictionary: userDictionary, fireBaseID: firebaseID)
+                } else
+                {
+                    completionBlock(userDictionary: nil, fireBaseID: nil)
+                }
+            }
+            else
+            {
+                println(error)
+            }
+        }
+
+    }
+
+    // MARK: Creators
+
+    class func findOrCreateUser(userDictionary: [String : AnyObject], completionBlock: CreatorComplete)
+    {
+        if let githubID = userDictionary["githubID"] as? String
+        {
+            self.findUserByGithubID(githubID, completionBlock: { (filledUserDictionary, fireBaseID) -> Void in
+                if let fireBaseID = fireBaseID{
+                    completionBlock(firebaseID: fireBaseID, success: true)
+                }
+                else
+                {
+                    self.createUser(userDictionary, completionBlock: { (firebaseID, success) -> Void in
+                        completionBlock(firebaseID: firebaseID, success: success)
+                    })
+                }
+            })
         }
     }
 
-    class func post (user : User, completionBlock: ((userID : String, success : Bool) -> Void)?)
+    class func createUser (userDictionary : [String : AnyObject], completionBlock: CreatorComplete?)
     {
         let requestURL = NSURL(string: "\(PrivateKeys.FIREBASEURL)/users.json")
         let request = NSMutableURLRequest(URL: requestURL!)
         request.HTTPMethod = "POST"
-
-        let userDictionary = ["firstName": user.firstName, "lastName": user.lastName, "courseName":user.courseName, "githubID":user.githubID]
 
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(userDictionary, options: nil, error: nil)
 
@@ -42,11 +87,9 @@ class FirebaseAPI: NSObject {
             {
                 if let completion = completionBlock
                 {
-                    completion(userID: jsonresponse["name"]!, success:true)
+                    completion(firebaseID: jsonresponse["name"]!, success:true)
                 }
             }
         }
-
-
     }
 }
