@@ -12,7 +12,7 @@ import CoreData
 extension User {
     func toFireBaseDictionaryAndID() -> (firebaseDictionary: [String : AnyObject], firebaseID: String?)
     {
-        let firebaseDictionary = ["firstName": self.firstName, "lastName": self.lastName, "courseName":self.courseName, "githubID":self.githubID];
+        let firebaseDictionary = ["firstName": firstName, "lastName": lastName, "courseName":courseName, "githubID":githubID];
         if let tempFirebaseID = self.firebaseID
         {
             return (firebaseDictionary, tempFirebaseID)

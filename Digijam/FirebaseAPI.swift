@@ -24,6 +24,7 @@ class FirebaseAPI: NSObject {
 
     class func findUserByFirebaseID(firebaseID: String, completionBlock: FinderComplete)
     {
+        // the $key is to handle the fact that the firebaseID is actually the key of the dictionary which contains the data
         self.findBy("$key", value: firebaseID, completionBlock: completionBlock)
     }
 
