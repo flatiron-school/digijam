@@ -12,6 +12,7 @@
 		3120FEAE1A361EE700411EFA /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3120FEAC1A361EE700411EFA /* Locksmith.swift */; };
 		3120FEAF1A361EE700411EFA /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */; };
 		315728661A48710E0010C895 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315728651A48710E0010C895 /* UserManager.swift */; };
+		315728841A49C8990010C895 /* User+GithubConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315728831A49C8990010C895 /* User+GithubConverter.swift */; };
 		31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC741A1566E000C74702 /* AppDelegate.swift */; };
 		31A0AC771A1566E000C74702 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC761A1566E000C74702 /* FeedViewController.swift */; };
 		31A0AC7A1A1566E000C74702 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31A0AC781A1566E000C74702 /* Main.storyboard */; };
@@ -81,6 +82,7 @@
 		3120FEAC1A361EE700411EFA /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
 		3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 		315728651A48710E0010C895 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		315728831A49C8990010C895 /* User+GithubConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+GithubConverter.swift"; path = "../Alamofire/User+GithubConverter.swift"; sourceTree = "<group>"; };
 		31A0AC6F1A1566E000C74702 /* Digijam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digijam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A0AC731A1566E000C74702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31A0AC741A1566E000C74702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				31A0AC741A1566E000C74702 /* AppDelegate.swift */,
+				315728831A49C8990010C895 /* User+GithubConverter.swift */,
 				D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */,
 				D8027E651A26126F00D38645 /* User.swift */,
 				D81D184E1A48AC5F0059FA1A /* User+FireBaseConverter.swift */,
@@ -327,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				315728841A49C8990010C895 /* User+GithubConverter.swift in Sources */,
 				3120FEAF1A361EE700411EFA /* LocksmithRequest.swift in Sources */,
 				31074BE91A156B1F003F7557 /* LoginViewController.swift in Sources */,
 				D808B4BE1A237A68004BF515 /* Digijam.xcdatamodeld in Sources */,
