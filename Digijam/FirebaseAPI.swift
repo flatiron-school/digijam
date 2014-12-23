@@ -9,12 +9,47 @@
 import UIKit
 import Alamofire
 
+typealias FinderComplete = (userDictionary: [String : AnyObject]?, fireBaseID: String?) -> Void
 class FirebaseAPI: NSObject {
+
+
+    // MARK: Finders
+
+    class func findUserByGithubID(githubID: String, completionBlock: FinderComplete)
     {
+        self.findBy("githubID", value: githubID, completionBlock: completionBlock)
+    }
 
+    class func findUserByFirebaseID(firebaseID: String, completionBlock: FinderComplete)
+    {
+        self.findBy("$key", value: firebaseID, completionBlock: completionBlock)
+    }
 
+    private class func findBy(key: String, value: String, completionBlock: FinderComplete)
+    {
+        let requestURL = "\(PrivateKeys.FIREBASEURL)/users.json"
 
+        let requestParams: [String:AnyObject] = ["orderBy":"\"\(key)\"", "equalTo":"\"\(value)\"","limitToFirst":1]
 
+        Alamofire.request(.GET, requestURL, parameters: requestParams, encoding: ParameterEncoding.URL).responseJSON { (httpRequest, httpResponse, JSON, error) -> Void in
+            if let JSON: [String:AnyObject] = JSON as? [String:AnyObject]
+            {
+                if let firebaseID: String = JSON.keys.first
+                {
+                    var userDictionary: [String : AnyObject] = JSON[firebaseID] as [String : AnyObject]
+                    completionBlock(userDictionary: userDictionary, fireBaseID: firebaseID)
+                } else
+                {
+                    completionBlock(userDictionary: nil, fireBaseID: nil)
+                }
+            }
+            else
+            {
+                println(error)
+            }
+        }
+
+    }
         }
     }
 
