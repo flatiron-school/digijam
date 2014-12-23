@@ -23,6 +23,8 @@
 		D808B4BE1A237A68004BF515 /* Digijam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */; };
 		D808B4C11A237BC1004BF515 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808B4C01A237BC1004BF515 /* CoreDataManager.swift */; };
 		D808B4C31A237BCE004BF515 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D808B4C21A237BCE004BF515 /* CoreData.framework */; };
+		D81D184F1A48AC5F0059FA1A /* User+FireBaseConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81D184E1A48AC5F0059FA1A /* User+FireBaseConverter.swift */; };
+		D81D18521A48C1BA0059FA1A /* User+CommonMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81D18511A48C1BA0059FA1A /* User+CommonMethods.swift */; };
 		D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */; };
 		D8C986B11A1BFA850093C217 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */; };
 /* End PBXBuildFile section */
@@ -93,6 +95,8 @@
 		D808B4BD1A237A68004BF515 /* Digijam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Digijam.xcdatamodel; sourceTree = "<group>"; };
 		D808B4C01A237BC1004BF515 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D808B4C21A237BCE004BF515 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D81D184E1A48AC5F0059FA1A /* User+FireBaseConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+FireBaseConverter.swift"; sourceTree = "<group>"; };
+		D81D18511A48C1BA0059FA1A /* User+CommonMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CommonMethods.swift"; sourceTree = "<group>"; };
 		D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivateKeys.swift; path = ignoreMe/PrivateKeys.swift; sourceTree = SOURCE_ROOT; };
 		D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +147,8 @@
 				31A0AC741A1566E000C74702 /* AppDelegate.swift */,
 				D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */,
 				D8027E651A26126F00D38645 /* User.swift */,
+				D81D184E1A48AC5F0059FA1A /* User+FireBaseConverter.swift */,
+				D81D18511A48C1BA0059FA1A /* User+CommonMethods.swift */,
 				D808B4C01A237BC1004BF515 /* CoreDataManager.swift */,
 				D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */,
 				31A0AC761A1566E000C74702 /* FeedViewController.swift */,
@@ -324,7 +330,9 @@
 				31A0AC771A1566E000C74702 /* FeedViewController.swift in Sources */,
 				31E424761A1B98530075256E /* LoginProtocol.swift in Sources */,
 				31074BE81A156B1F003F7557 /* GithubAPI.swift in Sources */,
+				D81D18521A48C1BA0059FA1A /* User+CommonMethods.swift in Sources */,
 				31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */,
+				D81D184F1A48AC5F0059FA1A /* User+FireBaseConverter.swift in Sources */,
 				D808B4C11A237BC1004BF515 /* CoreDataManager.swift in Sources */,
 				D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */,
 				D8027E661A26126F00D38645 /* User.swift in Sources */,
