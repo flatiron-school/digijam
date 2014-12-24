@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 extension User {
     
@@ -20,8 +19,7 @@ extension User {
             let startOfFirstName = name.startIndex
             //assumes no middle name for now, can revamp this implementation to account for various names later
             let endOfFirstName = find(name, " ")
-            let beginningOfLastName = advance(start: endOfFirstName, n: 1, nil)
-            
+            let beginningOfLastName = advance(name.startIndex, 1)
             let endOfLastName = name.endIndex
             
             if let endOfFirstName = endOfFirstName {
