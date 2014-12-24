@@ -49,13 +49,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         
-        GithubAPI.getAccessViaURL(url)
+        UserManager.loginUser(url, completion: { (successfulLogin) -> () in
+            
+            if successfulLogin {
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            var feedViewController = storyboard.instantiateViewControllerWithIdentifier("FeedViewController") as FeedViewController
+            
+            self.window?.rootViewController?.presentViewController(feedViewController, animated: true, completion:nil)
+            }
 
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        })
 
-        var feedViewController = storyboard.instantiateViewControllerWithIdentifier("FeedViewController") as FeedViewController
-
-        window?.rootViewController?.presentViewController(feedViewController, animated: true, completion:nil)
         
         return true
 }

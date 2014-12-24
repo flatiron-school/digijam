@@ -12,7 +12,7 @@ import CoreData
 
 class GithubAPI {
     
-    class func getAccessToken () -> ([String : String]?, error : NSError?)
+    class func loadAccessToken () -> ([String : String]?, error : NSError?)
     {
         var service = "githubAccess"
         var accessTokenDictionary = "accessTokenDictionary"
@@ -24,14 +24,14 @@ class GithubAPI {
         return (accessTokenData as [String: String]?, error)
     }
     
-    class func getAccessViaURL(githubURL: NSURL) {
+    class func getAccessToken(githubURL: NSURL, completion:(successfullySaved: Bool) -> ()) {
 
         var service = "githubAccess"
         var accessTokenDictionary = "accessTokenDictionary"
         var userAccount = "default"
         var type : RequestType = .Read
 
-        var accessCode = String()
+        var accessCode = String( )
         
         if let tempURLString = githubURL.absoluteString {
             accessCode = tempURLString.substringWithRange(Range<String.Index>(start: advance(tempURLString.startIndex, 30), end: tempURLString.endIndex))
@@ -44,35 +44,61 @@ class GithubAPI {
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = ["Accept": "application/json"]
         Alamofire.request(.POST, accessTokenUrl, parameters: accessTokenParams).response({ (request, response, data, error) in
             
-        var accessTokenResults = self.parseJSON(data as NSData)
-        Locksmith.saveData(["access_token": accessTokenResults["access_token"] as String], forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
+            if let accessTokenResults = self.parseJSON(data as? NSData) {
+                Locksmith.saveData(["access_token": accessTokenResults["access_token"] as String], forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
+                
+                //Not really true that it was necessarily successfully saved; need to update code to do this "right", but this will check that there are at least accessTokenResults returned...
+                completion(successfullySaved: true)
+            }
+            else {
+                completion(successfullySaved: false)
+            }
 
-            GithubAPI.getAuthenticatedUserData()
+            
         })
     }
     
-    class func getAuthenticatedUserData() {
+    class func getAuthenticatedUserData(completion:(githubUserDictionary: NSDictionary) -> Void) {
 
         var user : User
         let userDetailsURL = "https://api.github.com/user?"
-        let accessTokenDictionary : [String:String]? = GithubAPI.getAccessToken().0
-        Alamofire.request(.GET, userDetailsURL, parameters:accessTokenDictionary ).response({(request, response, data, error) in
+        Alamofire.request(.GET, userDetailsURL, parameters:GithubAPI.accessToken()).response({(request, response, data, error) in
             
-            var userResult = self.parseJSON(data as NSData)
-            
-            if let githubID = userResult["id"] as? Int {
-                
-                UserManager.findOrCreateUserWithGithubID(String(githubID), completion: { (error) -> Void in
-                    //what do we want to do here?
-                })
+            if let githubUserDictionary = self.parseJSON(data as? NSData) {
+                completion(githubUserDictionary: githubUserDictionary)
             }
-
+            
         })
     }
 
-    class func parseJSON(inputData: NSData) -> NSDictionary{
+    class func getFeedForUser(username: String) {
+    
+        let feedUrl = "https://api.github.com/users/" + username + "/events"
+        Alamofire.request(.GET, feedUrl, parameters:GithubAPI.accessToken()).response({ (request, response, data, error) in
+            
+            var userFeed = self.parseJSON(data as? NSData)
+            
+            //complete method...
+        })
+    }
+    
+    private class func accessToken() -> [String : String]? {
+        
+        if let githubAccessToken = GithubAPI.loadAccessToken().0 {
+            return githubAccessToken
+        }
+        
+        return nil
+    }
+    
+    class func parseJSON(inputData: NSData?) -> NSDictionary?{
         var error: NSError?
-        var dataDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+        var dataDictionary: NSDictionary?
+        
+        if let inputData = inputData {
+            dataDictionary = NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary
+        }
+        
         return dataDictionary
     }
 }
