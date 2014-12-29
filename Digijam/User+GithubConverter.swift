@@ -14,6 +14,7 @@ extension User {
 
         githubID = githubDictionary["id"] as String
         
+        //converting full name into its parts for User model
         if let name: String = githubDictionary["name"] as? String {
             
             let startOfFirstName = name.startIndex
@@ -27,6 +28,7 @@ extension User {
                 
                 lastName = name.substringWithRange(Range(start:beginningOfLastName, end: endOfLastName))
             }
+                
             else {
                 //uses login (i.e. actual username) if the user's name is not complete, as a starting point.
                 if let username = githubDictionary["login"] as String? {
