@@ -42,9 +42,9 @@ class GithubAPI {
         let accessTokenParams = ["client_id":PrivateKeys.githubClientID, "client_secret":PrivateKeys.githubClientSecret, "code":accessCode]
         
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = ["Accept": "application/json"]
-        Alamofire.request(.POST, accessTokenUrl, parameters: accessTokenParams).response({ (request, response, data, error) in
+        Alamofire.request(.POST, accessTokenUrl, parameters: accessTokenParams).responseJSON({ (request, response, JSON, error) in
             
-            if let accessTokenResults = self.parseJSON(data as? NSData) {
+            if let accessTokenResults: [String:AnyObject] = JSON as? [String:AnyObject] {
                 Locksmith.saveData(["access_token": accessTokenResults["access_token"] as String], forKey: accessTokenDictionary, inService: service, forUserAccount: userAccount)
                 
                 //Not really true that it was necessarily successfully saved; need to update code to do this "right", but this will check that there are at least accessTokenResults returned...
@@ -62,9 +62,9 @@ class GithubAPI {
 
         var user : User
         let userDetailsURL = "https://api.github.com/user?"
-        Alamofire.request(.GET, userDetailsURL, parameters:GithubAPI.accessToken()).response({(request, response, data, error) in
+        Alamofire.request(.GET, userDetailsURL, parameters:GithubAPI.accessToken()).responseJSON({(request, response, JSON, error) in
             
-            if let githubUserDictionary = self.parseJSON(data as? NSData) {
+            if let githubUserDictionary : [String:AnyObject] = JSON as? [String:AnyObject] {
                 completion(githubUserDictionary: githubUserDictionary)
             }
             
@@ -74,9 +74,9 @@ class GithubAPI {
     class func getFeedForUser(username: String) {
     
         let feedUrl = "https://api.github.com/users/" + username + "/events"
-        Alamofire.request(.GET, feedUrl, parameters:GithubAPI.accessToken()).response({ (request, response, data, error) in
+        Alamofire.request(.GET, feedUrl, parameters:GithubAPI.accessToken()).responseJSON({ (request, response, JSON, error) in
             
-            var userFeed = self.parseJSON(data as? NSData)
+            var userFeed : [String : AnyObject] = JSON as [String : AnyObject]
             
             //complete method...
         })
@@ -91,14 +91,4 @@ class GithubAPI {
         return nil
     }
     
-    class func parseJSON(inputData: NSData?) -> NSDictionary?{
-        var error: NSError?
-        var dataDictionary: NSDictionary?
-        
-        if let inputData = inputData {
-            dataDictionary = NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers, error: &error) as? NSDictionary
-        }
-        
-        return dataDictionary
-    }
 }

@@ -16,9 +16,9 @@ class UserManager: NSObject {
         static var currentUser : User?
         static var context = CoreDataManager.sharedInstance.managedObjectContext
     }
-        
+    
     class var sharedInstance : UserManager {
-                return Static.instance
+        return Static.instance
     }
     
     class var currentUser: User? {
@@ -32,9 +32,9 @@ class UserManager: NSObject {
     class func loginUser(url:NSURL, completion: (successfulLogin: Bool) -> ()) {
         GithubAPI.getAccessToken(url, completion: { (successfullySaved) -> () in
             if successfullySaved {
-            GithubAPI.getAuthenticatedUserData({ (githubUserDictionary: NSDictionary) -> Void in
-                
-            })
+                GithubAPI.getAuthenticatedUserData({ (githubUserDictionary: NSDictionary) -> Void in
+                    
+                })
             }
         })
     }
@@ -69,7 +69,7 @@ class UserManager: NSObject {
         
         let foundUsers = contextToUse.executeFetchRequest(fetchRequest, error: nil) as? [User]
         
-        if var foundUser = foundUsers?.first {
+        if let foundUser = foundUsers?.first {
             return foundUser
         }
         
