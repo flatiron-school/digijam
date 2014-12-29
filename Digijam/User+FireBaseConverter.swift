@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 
 extension User {
-    func toFireBaseDictionaryAndID() -> (firebaseDictionary: [String : AnyObject], firebaseID: String?)
+    func toFireBaseDictionaryAndID() -> (firebaseDictionary: [String : AnyObject?], firebaseID: String?)
     {
-        let firebaseDictionary = ["firstName": firstName, "lastName": lastName, "courseName":courseName, "githubID":githubID];
+        let firebaseDictionary : [String : AnyObject?] = ["firstName": firstName, "lastName": lastName, "courseName":courseName, "githubID":githubID];
         if let tempFirebaseID = self.firebaseID
         {
             return (firebaseDictionary, tempFirebaseID)
@@ -24,9 +24,9 @@ extension User {
 
     func configureWithFireBaseDictionary(firebaseDictionary: [String : AnyObject], firebaseID: String?)
     {
-        firstName = firebaseDictionary["firstName"] as String
-        lastName = firebaseDictionary["lastName"] as String
-        courseName = firebaseDictionary["courseName"] as String
+        firstName = firebaseDictionary["firstName"] as? String
+        lastName = firebaseDictionary["lastName"] as? String
+        courseName = firebaseDictionary["courseName"] as? String
         githubID = firebaseDictionary["githubID"] as String
         self.firebaseID = firebaseID
     }

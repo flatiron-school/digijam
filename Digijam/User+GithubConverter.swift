@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 extension User {
     
@@ -15,13 +14,13 @@ extension User {
 
         githubID = githubDictionary["id"] as String
         
+        //converting full name into its parts for User model
         if let name: String = githubDictionary["name"] as? String {
             
             let startOfFirstName = name.startIndex
             //assumes no middle name for now, can revamp this implementation to account for various names later
             let endOfFirstName = find(name, " ")
-            let beginningOfLastName = advance(start: endOfFirstName, n: 1, nil)
-            
+            let beginningOfLastName = advance(name.startIndex, 1)
             let endOfLastName = name.endIndex
             
             if let endOfFirstName = endOfFirstName {
@@ -29,6 +28,7 @@ extension User {
                 
                 lastName = name.substringWithRange(Range(start:beginningOfLastName, end: endOfLastName))
             }
+                
             else {
                 //uses login (i.e. actual username) if the user's name is not complete, as a starting point.
                 if let username = githubDictionary["login"] as String? {
