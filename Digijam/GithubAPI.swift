@@ -58,7 +58,7 @@ class GithubAPI {
         })
     }
     
-    class func getAuthenticatedUserData(completion:(githubUserDictionary: NSDictionary) -> Void) {
+    class func getAuthenticatedUserData(completion:(githubUserDictionary: [String:AnyObject]) -> Void) {
 
         var user : User
         let userDetailsURL = "https://api.github.com/user?"
@@ -71,19 +71,32 @@ class GithubAPI {
         })
     }
 
-    class func getFeedForUser(username: String) {
+    class func getGithubFeedForUser(username: String, completion: (githubFeed: [[String:String]]?, error: NSError!) -> ()) {
     
         let feedUrl = "https://api.github.com/users/" + username + "/events"
         Alamofire.request(.GET, feedUrl, parameters:GithubAPI.accessToken()).responseJSON({ (request, response, JSON, error) in
             
-            var userFeed : [String : AnyObject] = JSON as [String : AnyObject]
+            completion(githubFeed: JSON as [[String : String]]?, error: error)
             
-            //complete method...
         })
     }
     
-    private class func accessToken() -> [String : String]? {
-        
+    func filterPushesFromFeedForUser(username: String) {
+        GithubAPI.getGithubFeedForUser(username) { (githubFeed, error) -> () in
+            if let githubFeed = githubFeed {
+                for githubEvent in githubFeed {
+                    if let githubEventType = githubEvent["type"] {
+                        if githubEventType  == "PushEvent" {
+                            println("We got one!")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+        private class func accessToken() -> [String : String]? {
+            
         if let githubAccessToken = GithubAPI.loadAccessToken().0 {
             return githubAccessToken
         }

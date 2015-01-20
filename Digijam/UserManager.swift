@@ -29,11 +29,13 @@ class UserManager: NSObject {
         return Static.context
     }
     
-    class func loginUser(url:NSURL, completion: (successfulLogin: Bool) -> ()) {
+    class func loginUser(url:NSURL, loginCompletion: (successfulLogin: Bool) -> ()) {
         GithubAPI.getAccessToken(url, completion: { (successfullySaved) -> () in
             if successfullySaved {
-                GithubAPI.getAuthenticatedUserData({ (githubUserDictionary: NSDictionary) -> Void in
-                    
+                GithubAPI.getAuthenticatedUserData({ (githubUserDictionary: [String : AnyObject]) -> Void in
+                    self.findOrCreateUserWithGithubDictionary(githubUserDictionary, context: Static.context) { (error) -> Void in
+                        loginCompletion(successfulLogin: true)
+                    }
                 })
             }
         })

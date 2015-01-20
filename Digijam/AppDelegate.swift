@@ -46,10 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    
+
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         
-        UserManager.loginUser(url, completion: { (successfulLogin) -> () in
+        UserManager.loginUser(url, loginCompletion: { (successfulLogin) -> () in
             
             if successfulLogin {
                 var storyboard = UIStoryboard(name: "Main", bundle: nil)

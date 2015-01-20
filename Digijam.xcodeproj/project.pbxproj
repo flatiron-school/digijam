@@ -11,6 +11,11 @@
 		31074BE91A156B1F003F7557 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31074BE71A156B1F003F7557 /* LoginViewController.swift */; };
 		3120FEAE1A361EE700411EFA /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3120FEAC1A361EE700411EFA /* Locksmith.swift */; };
 		3120FEAF1A361EE700411EFA /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */; };
+		3126EDD71A6DA87900AA971C /* GithubEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126EDD61A6DA87900AA971C /* GithubEvent.swift */; };
+		3126EDDA1A6DA88D00AA971C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126EDD91A6DA88D00AA971C /* Event.swift */; };
+		3126EDDC1A6DAB0B00AA971C /* UserFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126EDDB1A6DAB0B00AA971C /* UserFeed.swift */; };
+		3126EDF11A6DC86700AA971C /* Digijam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3126EDEF1A6DC86700AA971C /* Digijam.xcdatamodeld */; };
+		3126EDF51A6DCA0100AA971C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126EDF41A6DCA0100AA971C /* User.swift */; };
 		315728661A48710E0010C895 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315728651A48710E0010C895 /* UserManager.swift */; };
 		315728841A49C8990010C895 /* User+GithubConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315728831A49C8990010C895 /* User+GithubConverter.swift */; };
 		31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC741A1566E000C74702 /* AppDelegate.swift */; };
@@ -21,8 +26,6 @@
 		31A0AC8B1A1566E000C74702 /* DigijamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC8A1A1566E000C74702 /* DigijamTests.swift */; };
 		31A0ACA01A1567A700C74702 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 31A0AC9A1A15677B00C74702 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		31E424761A1B98530075256E /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E424751A1B98530075256E /* LoginProtocol.swift */; };
-		D8027E661A26126F00D38645 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8027E651A26126F00D38645 /* User.swift */; };
-		D808B4BE1A237A68004BF515 /* Digijam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */; };
 		D808B4C11A237BC1004BF515 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808B4C01A237BC1004BF515 /* CoreDataManager.swift */; };
 		D808B4C31A237BCE004BF515 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D808B4C21A237BCE004BF515 /* CoreData.framework */; };
 		D81D184F1A48AC5F0059FA1A /* User+FireBaseConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81D184E1A48AC5F0059FA1A /* User+FireBaseConverter.swift */; };
@@ -81,8 +84,12 @@
 		31074BE71A156B1F003F7557 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3120FEAC1A361EE700411EFA /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
 		3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
+		3126EDD61A6DA87900AA971C /* GithubEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubEvent.swift; sourceTree = "<group>"; };
+		3126EDD91A6DA88D00AA971C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3126EDDB1A6DAB0B00AA971C /* UserFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeed.swift; sourceTree = "<group>"; };
+		3126EDF01A6DC86700AA971C /* Digijam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Digijam.xcdatamodel; sourceTree = "<group>"; };
+		3126EDF41A6DCA0100AA971C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		315728651A48710E0010C895 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		315728831A49C8990010C895 /* User+GithubConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+GithubConverter.swift"; path = "../Alamofire/User+GithubConverter.swift"; sourceTree = "<group>"; };
 		315728831A49C8990010C895 /* User+GithubConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+GithubConverter.swift"; sourceTree = "<group>"; };
 		31A0AC6F1A1566E000C74702 /* Digijam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digijam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A0AC731A1566E000C74702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,8 +103,6 @@
 		31A0AC8A1A1566E000C74702 /* DigijamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigijamTests.swift; sourceTree = "<group>"; };
 		31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		31E424751A1B98530075256E /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
-		D8027E651A26126F00D38645 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D808B4BD1A237A68004BF515 /* Digijam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Digijam.xcdatamodel; sourceTree = "<group>"; };
 		D808B4C01A237BC1004BF515 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D808B4C21A237BCE004BF515 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D81D184E1A48AC5F0059FA1A /* User+FireBaseConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+FireBaseConverter.swift"; sourceTree = "<group>"; };
@@ -125,6 +130,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3126EDDD1A6DADB200AA971C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D808B4C01A237BC1004BF515 /* CoreDataManager.swift */,
+				D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */,
+				315728651A48710E0010C895 /* UserManager.swift */,
+				315728831A49C8990010C895 /* User+GithubConverter.swift */,
+				D81D184E1A48AC5F0059FA1A /* User+FireBaseConverter.swift */,
+				D81D18511A48C1BA0059FA1A /* User+CommonMethods.swift */,
+				3126EDDB1A6DAB0B00AA971C /* UserFeed.swift */,
+				3126EDD91A6DA88D00AA971C /* Event.swift */,
+				3126EDD61A6DA87900AA971C /* GithubEvent.swift */,
+				31074BE61A156B1F003F7557 /* GithubAPI.swift */,
+				3126EDEF1A6DC86700AA971C /* Digijam.xcdatamodeld */,
+				3126EDF41A6DCA0100AA971C /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3126EDDE1A6DADD500AA971C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D808B4C21A237BCE004BF515 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		31A0AC661A1566E000C74702 = {
 			isa = PBXGroup;
 			children = (
@@ -149,23 +181,14 @@
 		31A0AC711A1566E000C74702 /* Digijam */ = {
 			isa = PBXGroup;
 			children = (
-				31A0AC741A1566E000C74702 /* AppDelegate.swift */,
-				315728831A49C8990010C895 /* User+GithubConverter.swift */,
-				D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */,
-				D8027E651A26126F00D38645 /* User.swift */,
-				D81D184E1A48AC5F0059FA1A /* User+FireBaseConverter.swift */,
-				D81D18511A48C1BA0059FA1A /* User+CommonMethods.swift */,
-				D808B4C01A237BC1004BF515 /* CoreDataManager.swift */,
-				D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */,
+				3126EDDD1A6DADB200AA971C /* Model */,
 				31A0AC761A1566E000C74702 /* FeedViewController.swift */,
-				D8C986B01A1BFA850093C217 /* FirebaseAPI.swift */,
-				31074BE61A156B1F003F7557 /* GithubAPI.swift */,
-				315728651A48710E0010C895 /* UserManager.swift */,
 				31074BE71A156B1F003F7557 /* LoginViewController.swift */,
 				31E424751A1B98530075256E /* LoginProtocol.swift */,
 				31A0AC781A1566E000C74702 /* Main.storyboard */,
 				31A0AC7B1A1566E000C74702 /* Images.xcassets */,
 				31A0AC7D1A1566E000C74702 /* LaunchScreen.xib */,
+				31A0AC741A1566E000C74702 /* AppDelegate.swift */,
 				31A0AC721A1566E000C74702 /* Supporting Files */,
 			);
 			path = Digijam;
@@ -174,7 +197,8 @@
 		31A0AC721A1566E000C74702 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D808B4C21A237BCE004BF515 /* CoreData.framework */,
+				3126EDDE1A6DADD500AA971C /* Frameworks */,
+				D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */,
 				31A0AC731A1566E000C74702 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -334,19 +358,22 @@
 				315728841A49C8990010C895 /* User+GithubConverter.swift in Sources */,
 				3120FEAF1A361EE700411EFA /* LocksmithRequest.swift in Sources */,
 				31074BE91A156B1F003F7557 /* LoginViewController.swift in Sources */,
-				D808B4BE1A237A68004BF515 /* Digijam.xcdatamodeld in Sources */,
+				3126EDD71A6DA87900AA971C /* GithubEvent.swift in Sources */,
 				31A0AC771A1566E000C74702 /* FeedViewController.swift in Sources */,
 				31E424761A1B98530075256E /* LoginProtocol.swift in Sources */,
 				31074BE81A156B1F003F7557 /* GithubAPI.swift in Sources */,
+				3126EDF11A6DC86700AA971C /* Digijam.xcdatamodeld in Sources */,
 				D81D18521A48C1BA0059FA1A /* User+CommonMethods.swift in Sources */,
 				31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */,
+				3126EDDA1A6DA88D00AA971C /* Event.swift in Sources */,
 				D81D184F1A48AC5F0059FA1A /* User+FireBaseConverter.swift in Sources */,
 				D808B4C11A237BC1004BF515 /* CoreDataManager.swift in Sources */,
 				D8BF55F01A1BD5BC00AE78F8 /* PrivateKeys.swift in Sources */,
-				D8027E661A26126F00D38645 /* User.swift in Sources */,
+				3126EDDC1A6DAB0B00AA971C /* UserFeed.swift in Sources */,
 				315728661A48710E0010C895 /* UserManager.swift in Sources */,
 				D8C986B11A1BFA850093C217 /* FirebaseAPI.swift in Sources */,
 				3120FEAE1A361EE700411EFA /* Locksmith.swift in Sources */,
+				3126EDF51A6DCA0100AA971C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,12 +584,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D808B4BC1A237A68004BF515 /* Digijam.xcdatamodeld */ = {
+		3126EDEF1A6DC86700AA971C /* Digijam.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D808B4BD1A237A68004BF515 /* Digijam.xcdatamodel */,
+				3126EDF01A6DC86700AA971C /* Digijam.xcdatamodel */,
 			);
-			currentVersion = D808B4BD1A237A68004BF515 /* Digijam.xcdatamodel */;
+			currentVersion = 3126EDF01A6DC86700AA971C /* Digijam.xcdatamodel */;
 			path = Digijam.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -13,7 +13,7 @@ extension User {
     func configureWithGithubDictionary(githubDictionary: [String : AnyObject]) {
 
         githubID = githubDictionary["id"] as String
-        
+        githubUserName = githubDictionary["login"] as String
         //converting full name into its parts for User model
         if let name: String = githubDictionary["name"] as? String {
             
