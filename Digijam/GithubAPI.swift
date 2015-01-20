@@ -74,7 +74,7 @@ class GithubAPI {
     class func getGithubFeedForUser(username: String, completion: (githubFeed: [String:AnyObject]?, error: NSError!) -> ()) {
     
         let accessTokenDictionary = GithubAPI.accessToken()
-        let accessToken = accessTokenDictionary?["access_token"]
+        //let accessToken = accessTokenDictionary?["access_token"] Just had this in to see that the access token is returned. It is. Left here in case you want to try it.
         let feedUrl = "https://api.github.com/users/" + username + "/events"
         Alamofire.request(.GET, feedUrl, parameters:accessTokenDictionary).responseJSON({ (request, response, JSON, error) in
             println(JSON as [String:AnyObject]?)
