@@ -71,40 +71,77 @@ class GithubAPI {
         })
     }
 
-    class func getGithubFeedForUser(username: String, completion: (githubFeed: [String:AnyObject]?, error: NSError!) -> ()) {
+    class func getGithubEventsForUser(username: String, completion: (githubEvents: [[String:AnyObject]]?, error: NSError!) -> ()) {
     
         let accessTokenDictionary = GithubAPI.accessToken()
         //let accessToken = accessTokenDictionary?["access_token"] Just had this in to see that the access token is returned. It is. Left here in case you want to try it.
         let feedUrl = "https://api.github.com/users/" + username + "/events"
         Alamofire.request(.GET, feedUrl, parameters:accessTokenDictionary).responseJSON({ (request, response, JSON, error) in
-            println(JSON as [String:AnyObject]?)
             if (error == nil) {
-                completion(githubFeed: JSON as [String : AnyObject]?, error: error)
+                completion(githubEvents: JSON as [[String : AnyObject]]?, error: error)
             }
         })
     }
     
-    func filterPushesFromFeedForUser(username: String) {
-        GithubAPI.getGithubFeedForUser(username) { (githubFeed, error) -> () in
-            if let githubFeed = githubFeed {
-                for githubEvent in githubFeed {
-                    //if let githubEventType: AnyObject = githubEvent["type"] {
-                     //   if githubEventType as NSString  == "PushEvent" {
-                    //        println("We got one!")
-                    //}
-                    //}
+    func filterPushEventsFromAPIForUser(username: String, completion: (userFeed: UserFeed?, error: NSError?) -> ()) {
+        GithubAPI.getGithubEventsForUser(username) { (githubEvents, error) -> () in
+            if let githubEvents = githubEvents {
+                
+                var userFeed = UserFeed();
+                for githubEvent in githubEvents {
+                    if let githubEventType: AnyObject = githubEvent["type"]
+                    {
+                        
+                        if githubEventType as NSString  == "PushEvent" {
+                            if let githubRepo: String = (githubEvent["repo"] as? [String : AnyObject])?["name"] as? String {
+                                //tried to chain above. Found it to be a bit more confusing than it is worth.
+                                if let githubPayload : [String : AnyObject] = githubEvent["payload"] as? [String : AnyObject] {
+                                    
+                                    if let githubCommits : [[String : AnyObject]] = githubPayload["commits"] as? [[String : AnyObject]] {
+                                        
+                                        if let lastCommitMessage : String = githubCommits[0]["message"] as? String {
+                                            
+                                            if let githubEventCreatedDate : String = githubEvent["created_at"] as? String {
+                                            var newEvent : Event = Event(title: githubRepo, type: EventType.GithubPush, owner: UserManager.currentUser!, content:lastCommitMessage, timestamp:self.convertGithubDateStringToNSDate(githubEventCreatedDate))
+                                                
+                                                userFeed.events.append(newEvent)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-           }
+                
+                completion(userFeed: userFeed, error: nil) //TODO: Deal with error term.
+            }
         }
     }
     
-        private class func accessToken() -> [String : String]? {
-            
-        if let githubAccessToken = GithubAPI.loadAccessToken().0 {
-            return githubAccessToken
-        }
+    func convertGithubDateStringToNSDate(githubDate: String) -> NSDate {
+    
+        var dateFormatter = NSDateFormatter()
+        let usLocale = NSLocale(localeIdentifier: "en_US")
+        dateFormatter.locale = usLocale
+        dateFormatter.timeZone = NSTimeZone(name:"UTC")
+        dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+        dateFormatter.formatterBehavior = NSDateFormatterBehavior.Behavior10_4
+       
+        // see http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns
+        dateFormatter.dateFormat = "yyyy-MM-ddEEEEEHH:mm:ssZ"
         
+        let formattedDate = dateFormatter.dateFromString(githubDate)!
+        return formattedDate
+    }
+
+private class func accessToken() -> [String : String]? {
+    
+    if let githubAccessToken = GithubAPI.loadAccessToken().0 {
+        return githubAccessToken
+    }
+    
         return nil
     }
-    
+
 }

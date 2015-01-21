@@ -17,8 +17,9 @@ class FeedViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         var githubAPI = GithubAPI()
-        githubAPI.filterPushesFromFeedForUser(UserManager.currentUser!.githubID)
-        
+        githubAPI.filterPushEventsFromAPIForUser(UserManager.currentUser?.githubUserName, completion: { (userFeed, error) -> () in
+            //TODO: Do something with userfeed returned.
+        })
     }
     
     override func viewDidAppear(animated: Bool) {

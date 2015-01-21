@@ -10,6 +10,6 @@ import UIKit
 
 class UserFeed: NSObject {
    
-    var events : [Event]?
+    var events : [Event] = [Event]()
     
 }
