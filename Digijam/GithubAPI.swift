@@ -90,8 +90,6 @@ class GithubAPI {
                 var userFeed = UserFeed();
                 for githubEvent in githubEvents {
                     var newEvent = Event(githubEventDictionary: githubEvent)
-                    println(newEvent.content)
-                    println(newEvent.owner)
                     userFeed.events.append(newEvent)
                 }
                 
