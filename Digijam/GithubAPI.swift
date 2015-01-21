@@ -89,29 +89,10 @@ class GithubAPI {
                 
                 var userFeed = UserFeed();
                 for githubEvent in githubEvents {
-                    if let githubEventType: AnyObject = githubEvent["type"]
-                    {
-                        
-                        if githubEventType as NSString  == "PushEvent" {
-                            if let githubRepo: String = (githubEvent["repo"] as? [String : AnyObject])?["name"] as? String {
-                                //tried to chain above. Found it to be a bit more confusing than it is worth.
-                                if let githubPayload : [String : AnyObject] = githubEvent["payload"] as? [String : AnyObject] {
-                                    
-                                    if let githubCommits : [[String : AnyObject]] = githubPayload["commits"] as? [[String : AnyObject]] {
-                                        
-                                        if let lastCommitMessage : String = githubCommits[0]["message"] as? String {
-                                            
-                                            if let githubEventCreatedDate : String = githubEvent["created_at"] as? String {
-                                            var newEvent : Event = Event(title: githubRepo, type: EventType.GithubPush, owner: UserManager.currentUser!, content:lastCommitMessage, timestamp:self.convertGithubDateStringToNSDate(githubEventCreatedDate))
-                                                
-                                                userFeed.events.append(newEvent)
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    var newEvent = Event(githubEventDictionary: githubEvent)
+                    println(newEvent.content)
+                    println(newEvent.owner)
+                    userFeed.events.append(newEvent)
                 }
                 
                 completion(userFeed: userFeed, error: nil) //TODO: Deal with error term.
@@ -119,22 +100,7 @@ class GithubAPI {
         }
     }
     
-    func convertGithubDateStringToNSDate(githubDate: String) -> NSDate {
     
-        var dateFormatter = NSDateFormatter()
-        let usLocale = NSLocale(localeIdentifier: "en_US")
-        dateFormatter.locale = usLocale
-        dateFormatter.timeZone = NSTimeZone(name:"UTC")
-        dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-        dateFormatter.formatterBehavior = NSDateFormatterBehavior.Behavior10_4
-       
-        // see http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns
-        dateFormatter.dateFormat = "yyyy-MM-ddEEEEEHH:mm:ssZ"
-        
-        let formattedDate = dateFormatter.dateFromString(githubDate)!
-        return formattedDate
-    }
-
 private class func accessToken() -> [String : String]? {
     
     if let githubAccessToken = GithubAPI.loadAccessToken().0 {
