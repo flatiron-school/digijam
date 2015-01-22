@@ -30,10 +30,7 @@ class Event: NSObject {
     }
     
     convenience init(githubEventDictionary: [String : AnyObject]) {
-        if let githubEventType: AnyObject = githubEventDictionary["type"]
-        {
-            
-            if githubEventType as NSString  == "PushEvent" {
+        
                 if let githubRepo: String = (githubEventDictionary["repo"] as? [String : AnyObject])?["name"] as? String {
                     //tried to chain above. Found it to be a bit more confusing than it is worth.
                     if let githubPayload : [String : AnyObject] = githubEventDictionary["payload"] as? [String : AnyObject] {
@@ -51,8 +48,6 @@ class Event: NSObject {
                         }
                     }
                 }
-            }
-        }
         
         self.init(title: "Error", type: EventType.Error, owner: UserManager.currentUser!, content:"This update should not exist.", timestamp:NSDate())
     }

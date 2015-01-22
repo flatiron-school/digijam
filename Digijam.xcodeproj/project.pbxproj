@@ -16,6 +16,11 @@
 		3126EDDC1A6DAB0B00AA971C /* UserFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126EDDB1A6DAB0B00AA971C /* UserFeed.swift */; };
 		3126EDF11A6DC86700AA971C /* Digijam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3126EDEF1A6DC86700AA971C /* Digijam.xcdatamodeld */; };
 		3126EDF51A6DCA0100AA971C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126EDF41A6DCA0100AA971C /* User.swift */; };
+		312D0F691A702D690042371B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312D0F681A702D690042371B /* Login.storyboard */; };
+		312D0F6B1A704BF50042371B /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312D0F6A1A704BF50042371B /* EventCell.swift */; };
+		312D0F6D1A7051220042371B /* EventCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312D0F6C1A7051220042371B /* EventCellHeaderView.swift */; };
+		312D0F6F1A7051330042371B /* EventCellHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 312D0F6E1A7051330042371B /* EventCellHeaderView.xib */; };
+		312D0F711A7077D50042371B /* GitHub-Mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 312D0F701A7077D50042371B /* GitHub-Mark.png */; };
 		315728661A48710E0010C895 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315728651A48710E0010C895 /* UserManager.swift */; };
 		315728841A49C8990010C895 /* User+GithubConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315728831A49C8990010C895 /* User+GithubConverter.swift */; };
 		31A0AC751A1566E000C74702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC741A1566E000C74702 /* AppDelegate.swift */; };
@@ -24,7 +29,6 @@
 		31A0AC7C1A1566E000C74702 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31A0AC7B1A1566E000C74702 /* Images.xcassets */; };
 		31A0AC7F1A1566E000C74702 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A0AC7D1A1566E000C74702 /* LaunchScreen.xib */; };
 		31A0AC8B1A1566E000C74702 /* DigijamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A0AC8A1A1566E000C74702 /* DigijamTests.swift */; };
-		31A0ACA01A1567A700C74702 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 31A0AC9A1A15677B00C74702 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		31E424761A1B98530075256E /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E424751A1B98530075256E /* LoginProtocol.swift */; };
 		D808B4C11A237BC1004BF515 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808B4C01A237BC1004BF515 /* CoreDataManager.swift */; };
 		D808B4C31A237BCE004BF515 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D808B4C21A237BCE004BF515 /* CoreData.framework */; };
@@ -35,33 +39,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		31A0AC851A1566E000C74702 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 31A0AC671A1566E000C74702 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 31A0AC6E1A1566E000C74702;
-			remoteInfo = Digijam;
-		};
-		31A0AC991A15677B00C74702 /* PBXContainerItemProxy */ = {
+		312D0F641A702D280042371B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
 			remoteInfo = Alamofire;
 		};
-		31A0AC9B1A15677B00C74702 /* PBXContainerItemProxy */ = {
+		312D0F661A702D280042371B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
 			remoteInfo = AlamofireTests;
 		};
-		31A0AC9D1A15679A00C74702 /* PBXContainerItemProxy */ = {
+		31A0AC851A1566E000C74702 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */;
+			containerPortal = 31A0AC671A1566E000C74702 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = Alamofire;
+			remoteGlobalIDString = 31A0AC6E1A1566E000C74702;
+			remoteInfo = Digijam;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -72,7 +69,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				31A0ACA01A1567A700C74702 /* Alamofire.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,13 +78,18 @@
 /* Begin PBXFileReference section */
 		31074BE61A156B1F003F7557 /* GithubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
 		31074BE71A156B1F003F7557 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		3120FEAC1A361EE700411EFA /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
-		3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
+		3120FEAC1A361EE700411EFA /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Locksmith.swift; path = ../Locksmith.swift; sourceTree = "<group>"; };
+		3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocksmithRequest.swift; path = ../LocksmithRequest.swift; sourceTree = "<group>"; };
 		3126EDD61A6DA87900AA971C /* GithubEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubEvent.swift; sourceTree = "<group>"; };
 		3126EDD91A6DA88D00AA971C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3126EDDB1A6DAB0B00AA971C /* UserFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeed.swift; sourceTree = "<group>"; };
 		3126EDF01A6DC86700AA971C /* Digijam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Digijam.xcdatamodel; sourceTree = "<group>"; };
 		3126EDF41A6DCA0100AA971C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		312D0F681A702D690042371B /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		312D0F6A1A704BF50042371B /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		312D0F6C1A7051220042371B /* EventCellHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCellHeaderView.swift; sourceTree = "<group>"; };
+		312D0F6E1A7051330042371B /* EventCellHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCellHeaderView.xib; sourceTree = "<group>"; };
+		312D0F701A7077D50042371B /* GitHub-Mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GitHub-Mark.png"; path = "Images.xcassets/GitHub-Mark.png"; sourceTree = "<group>"; };
 		315728651A48710E0010C895 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		315728831A49C8990010C895 /* User+GithubConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+GithubConverter.swift"; sourceTree = "<group>"; };
 		31A0AC6F1A1566E000C74702 /* Digijam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digijam.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +102,7 @@
 		31A0AC841A1566E000C74702 /* DigijamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigijamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A0AC891A1566E000C74702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31A0AC8A1A1566E000C74702 /* DigijamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigijamTests.swift; sourceTree = "<group>"; };
-		31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		31E424751A1B98530075256E /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
 		D808B4C01A237BC1004BF515 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D808B4C21A237BCE004BF515 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -157,12 +158,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		312D0F601A702D280042371B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				312D0F651A702D280042371B /* Alamofire.framework */,
+				312D0F671A702D280042371B /* AlamofireTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		31A0AC661A1566E000C74702 = {
 			isa = PBXGroup;
 			children = (
-				3120FEAC1A361EE700411EFA /* Locksmith.swift */,
-				3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */,
-				31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */,
 				31A0AC711A1566E000C74702 /* Digijam */,
 				31A0AC871A1566E000C74702 /* DigijamTests */,
 				31A0AC701A1566E000C74702 /* Products */,
@@ -181,12 +188,17 @@
 		31A0AC711A1566E000C74702 /* Digijam */ = {
 			isa = PBXGroup;
 			children = (
-				3126EDDD1A6DADB200AA971C /* Model */,
-				31A0AC761A1566E000C74702 /* FeedViewController.swift */,
-				31074BE71A156B1F003F7557 /* LoginViewController.swift */,
-				31E424751A1B98530075256E /* LoginProtocol.swift */,
 				31A0AC781A1566E000C74702 /* Main.storyboard */,
+				312D0F681A702D690042371B /* Login.storyboard */,
+				3126EDDD1A6DADB200AA971C /* Model */,
+				31074BE71A156B1F003F7557 /* LoginViewController.swift */,
+				31A0AC761A1566E000C74702 /* FeedViewController.swift */,
+				312D0F6C1A7051220042371B /* EventCellHeaderView.swift */,
+				312D0F6E1A7051330042371B /* EventCellHeaderView.xib */,
+				312D0F6A1A704BF50042371B /* EventCell.swift */,
+				31E424751A1B98530075256E /* LoginProtocol.swift */,
 				31A0AC7B1A1566E000C74702 /* Images.xcassets */,
+				312D0F701A7077D50042371B /* GitHub-Mark.png */,
 				31A0AC7D1A1566E000C74702 /* LaunchScreen.xib */,
 				31A0AC741A1566E000C74702 /* AppDelegate.swift */,
 				31A0AC721A1566E000C74702 /* Supporting Files */,
@@ -197,6 +209,9 @@
 		31A0AC721A1566E000C74702 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3120FEAC1A361EE700411EFA /* Locksmith.swift */,
+				3120FEAD1A361EE700411EFA /* LocksmithRequest.swift */,
+				31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */,
 				3126EDDE1A6DADD500AA971C /* Frameworks */,
 				D8BF55EF1A1BD5BC00AE78F8 /* PrivateKeys.swift */,
 				31A0AC731A1566E000C74702 /* Info.plist */,
@@ -221,15 +236,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		31A0AC951A15677B00C74702 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				31A0AC9A1A15677B00C74702 /* Alamofire.framework */,
-				31A0AC9C1A15677B00C74702 /* AlamofireTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,7 +251,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				31A0AC9E1A15679A00C74702 /* PBXTargetDependency */,
 			);
 			name = Digijam;
 			productName = Digijam;
@@ -301,7 +306,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 31A0AC951A15677B00C74702 /* Products */;
+					ProductGroup = 312D0F601A702D280042371B /* Products */;
 					ProjectRef = 31A0AC941A15677B00C74702 /* Alamofire.xcodeproj */;
 				},
 			);
@@ -314,18 +319,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		31A0AC9A1A15677B00C74702 /* Alamofire.framework */ = {
+		312D0F651A702D280042371B /* Alamofire.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Alamofire.framework;
-			remoteRef = 31A0AC991A15677B00C74702 /* PBXContainerItemProxy */;
+			remoteRef = 312D0F641A702D280042371B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		31A0AC9C1A15677B00C74702 /* AlamofireTests.xctest */ = {
+		312D0F671A702D280042371B /* AlamofireTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AlamofireTests.xctest;
-			remoteRef = 31A0AC9B1A15677B00C74702 /* PBXContainerItemProxy */;
+			remoteRef = 312D0F661A702D280042371B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -335,9 +340,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				312D0F691A702D690042371B /* Login.storyboard in Resources */,
 				31A0AC7A1A1566E000C74702 /* Main.storyboard in Resources */,
+				312D0F6F1A7051330042371B /* EventCellHeaderView.xib in Resources */,
 				31A0AC7F1A1566E000C74702 /* LaunchScreen.xib in Resources */,
 				31A0AC7C1A1566E000C74702 /* Images.xcassets in Resources */,
+				312D0F711A7077D50042371B /* GitHub-Mark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,9 +364,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				315728841A49C8990010C895 /* User+GithubConverter.swift in Sources */,
+				312D0F6D1A7051220042371B /* EventCellHeaderView.swift in Sources */,
 				3120FEAF1A361EE700411EFA /* LocksmithRequest.swift in Sources */,
 				31074BE91A156B1F003F7557 /* LoginViewController.swift in Sources */,
 				3126EDD71A6DA87900AA971C /* GithubEvent.swift in Sources */,
+				312D0F6B1A704BF50042371B /* EventCell.swift in Sources */,
 				31A0AC771A1566E000C74702 /* FeedViewController.swift in Sources */,
 				31E424761A1B98530075256E /* LoginProtocol.swift in Sources */,
 				31074BE81A156B1F003F7557 /* GithubAPI.swift in Sources */,
@@ -392,11 +402,6 @@
 			isa = PBXTargetDependency;
 			target = 31A0AC6E1A1566E000C74702 /* Digijam */;
 			targetProxy = 31A0AC851A1566E000C74702 /* PBXContainerItemProxy */;
-		};
-		31A0AC9E1A15679A00C74702 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			targetProxy = 31A0AC9D1A15679A00C74702 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

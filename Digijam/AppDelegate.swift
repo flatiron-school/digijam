@@ -12,7 +12,9 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+    var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    var loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+
     lazy var userDefaults : NSUserDefaults = {
         let tempDefaults = NSUserDefaults.standardUserDefaults()
         return tempDefaults
@@ -26,18 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let accessToken = userDefaults.objectForKey("access_token") as? String
         
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if (accessToken == nil) {
             
-            var loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+            var loginViewController = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
             
             window?.rootViewController = loginViewController
         }
         else {
             
             
-            var feedViewController = storyboard.instantiateViewControllerWithIdentifier("FeedViewController") as FeedViewController
+            var feedViewController = mainStoryboard.instantiateViewControllerWithIdentifier("FeedViewController") as FeedViewController
             
             window?.rootViewController = feedViewController
         }
@@ -52,9 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserManager.loginUser(url, loginCompletion: { (successfulLogin) -> () in
             
             if successfulLogin {
-                var storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
-                var feedViewController = storyboard.instantiateViewControllerWithIdentifier("FeedViewController") as FeedViewController
+                var feedViewController = self.mainStoryboard.instantiateViewControllerWithIdentifier("FeedViewController") as FeedViewController
                 
                 self.window?.rootViewController?.presentViewController(feedViewController, animated: true, completion:nil)
             }

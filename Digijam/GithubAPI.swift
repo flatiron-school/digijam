@@ -74,7 +74,6 @@ class GithubAPI {
     class func getGithubEventsForUser(username: String, completion: (githubEvents: [[String:AnyObject]]?, error: NSError!) -> ()) {
     
         let accessTokenDictionary = GithubAPI.accessToken()
-        //let accessToken = accessTokenDictionary?["access_token"] Just had this in to see that the access token is returned. It is. Left here in case you want to try it.
         let feedUrl = "https://api.github.com/users/" + username + "/events"
         Alamofire.request(.GET, feedUrl, parameters:accessTokenDictionary).responseJSON({ (request, response, JSON, error) in
             if (error == nil) {
@@ -89,8 +88,15 @@ class GithubAPI {
                 
                 var userFeed = UserFeed();
                 for githubEvent in githubEvents {
-                    var newEvent = Event(githubEventDictionary: githubEvent)
-                    userFeed.events.append(newEvent)
+                    
+                    if let githubEventType: AnyObject = githubEvent["type"] {
+                        
+                        if githubEventType as NSString  == "PushEvent" {
+                          //  println(githubEvent)
+                            var newEvent = Event(githubEventDictionary: githubEvent)
+                            userFeed.events.append(newEvent)
+                        }
+                    }
                 }
                 
                 completion(userFeed: userFeed, error: nil) //TODO: Deal with error term.
@@ -99,12 +105,12 @@ class GithubAPI {
     }
     
     
-private class func accessToken() -> [String : String]? {
-    
-    if let githubAccessToken = GithubAPI.loadAccessToken().0 {
-        return githubAccessToken
-    }
-    
+    private class func accessToken() -> [String : String]? {
+        
+        if let githubAccessToken = GithubAPI.loadAccessToken().0 {
+            return githubAccessToken
+        }
+        
         return nil
     }
 
