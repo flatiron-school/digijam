@@ -82,11 +82,12 @@ class GithubAPI {
         })
     }
     
+    //this method may not be necessary anymore...
     func filterPushEventsFromAPIForUser(username: String, completion: (userFeed: UserFeed?, error: NSError?) -> ()) {
         GithubAPI.getGithubEventsForUser(username) { (githubEvents, error) -> () in
             if let githubEvents = githubEvents {
                 
-                var userFeed = UserFeed();
+                var userFeed = UserFeed()
                 for githubEvent in githubEvents {
                     
                     if let githubEventType: AnyObject = githubEvent["type"] {
@@ -103,8 +104,38 @@ class GithubAPI {
             }
         }
     }
+   
+    //could take the username or could take a User object. Which should it be?
+    func filterPushEventsForAllUsers(users: [String], completion: (userFeed: UserFeed?, error: NSError?) -> ()) {
+        
+        var userFeed = UserFeed()
+
+        var userCount = 0
+        for username in users {
+            GithubAPI.getGithubEventsForUser(username, completion: { (githubEvents, error) -> () in
+                if let githubEvents = githubEvents {
+                    for githubEvent in githubEvents {
+                        if let githubEventType: AnyObject = githubEvent["type"] {
+                            if githubEventType as NSString == "PushEvent" {
+                                var newEvent = Event(githubEventDictionary: githubEvent)
+                                userFeed.events.append(newEvent)
+                            }
+                        }
+                    }
+                }
+                
+                userCount++
+                
+                if userCount == users.count {
+                    completion(userFeed: userFeed, error: nil) //TODO: Deal with error term.
+                }
+            })
+        }
+        
+    }
     
     
+        
     private class func accessToken() -> [String : String]? {
         
         if let githubAccessToken = GithubAPI.loadAccessToken().0 {

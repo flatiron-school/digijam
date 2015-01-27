@@ -23,10 +23,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.dataSource = self
         
         var githubAPI = GithubAPI()
-        if let username = UserManager.currentUser?.githubUserName {
-            githubAPI.filterPushEventsFromAPIForUser(username, completion: { (userFeed, error) -> () in
+        if let usernames = UserManager.currentUser?.githubUserName {
+            githubAPI.filterPushEventsForAllUsers(["zdrossman"], completion: { (userFeed, error) -> () in
                 if error == nil {
                     if let userFeed = userFeed {
+                        userFeed.sortEventsByTimestamp()
                         self.primaryFeed = userFeed
                         self.tableView.reloadData()
                     }

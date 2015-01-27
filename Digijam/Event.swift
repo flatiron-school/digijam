@@ -14,6 +14,7 @@ public enum EventType : Int {
     case PhotoUpload = 3
     case Error = 4
 }
+
 class Event: NSObject {
     var title : String?
     var type : EventType
