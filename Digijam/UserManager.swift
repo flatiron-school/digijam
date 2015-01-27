@@ -29,17 +29,19 @@ class UserManager: NSObject {
         return Static.context
     }
     
-    class func loginUser(url:NSURL, completion: (successfulLogin: Bool) -> ()) {
+    class func loginUser(url:NSURL, loginCompletion: (successfulLogin: Bool) -> ()) {
         GithubAPI.getAccessToken(url, completion: { (successfullySaved) -> () in
             if successfullySaved {
-                GithubAPI.getAuthenticatedUserData({ (githubUserDictionary: NSDictionary) -> Void in
-                    
+                GithubAPI.getAuthenticatedUserData({ (githubUserDictionary: [String : AnyObject]) -> Void in
+                    self.findOrCreateUserWithGithubDictionary(githubUserDictionary, context: Static.context) { (error) -> Void in
+                        loginCompletion(successfulLogin: true)
+                    }
                 })
             }
         })
     }
     
-    class func findOrCreateUserWithGithubDictionary(githubDictionary: [String : AnyObject], context: NSManagedObjectContext?, completion: (error: NSError) -> Void) {
+    class func findOrCreateUserWithGithubDictionary(githubDictionary: [String : AnyObject], context: NSManagedObjectContext?, completion: (error: NSError!) -> Void) {
         
         var contextToUse = chooseAppropriateContext(context)
         
@@ -51,6 +53,8 @@ class UserManager: NSObject {
                 createUserWithGithubDictionary(githubDictionary, context: contextToUse)
                 //create calls to find / create on Firebase, with success / failure returns (?)
             }
+            
+            completion(error: nil) //TODO: Needs to be filled in with an error term.
             
         }
     }
@@ -69,7 +73,7 @@ class UserManager: NSObject {
         
         let foundUsers = contextToUse.executeFetchRequest(fetchRequest, error: nil) as? [User]
         
-        if let foundUser = foundUsers?.first {
+        if let foundUser : User = foundUsers?.first {
             return foundUser
         }
         
@@ -81,6 +85,8 @@ class UserManager: NSObject {
         var contextToUse = chooseAppropriateContext(context)
         var user = User.insert(contextToUse)
         user.configureWithGithubDictionary(githubDictionary)
+        Static.currentUser = user
+        contextToUse.save(nil) //TODO: Add error term
     }
     
     func getFeedForUser(githubUsername: String, context: NSManagedObjectContext, completion: (error: NSError) -> Void) {

@@ -12,8 +12,8 @@ extension User {
     
     func configureWithGithubDictionary(githubDictionary: [String : AnyObject]) {
 
-        githubID = githubDictionary["id"] as String
-        
+        githubID = String(githubDictionary["id"] as Int) //this is worth taking a look at. swift automagically figures out this could be an int, so you can't directly cast AnyObject to String!
+        githubUserName = githubDictionary["login"] as String
         //converting full name into its parts for User model
         if let name: String = githubDictionary["name"] as? String {
             

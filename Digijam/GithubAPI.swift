@@ -58,7 +58,7 @@ class GithubAPI {
         })
     }
     
-    class func getAuthenticatedUserData(completion:(githubUserDictionary: NSDictionary) -> Void) {
+    class func getAuthenticatedUserData(completion:(githubUserDictionary: [String:AnyObject]) -> Void) {
 
         var user : User
         let userDetailsURL = "https://api.github.com/user?"
@@ -71,17 +71,71 @@ class GithubAPI {
         })
     }
 
-    class func getFeedForUser(username: String) {
+    class func getGithubEventsForUser(username: String, completion: (githubEvents: [[String:AnyObject]]?, error: NSError!) -> ()) {
     
+        let accessTokenDictionary = GithubAPI.accessToken()
         let feedUrl = "https://api.github.com/users/" + username + "/events"
-        Alamofire.request(.GET, feedUrl, parameters:GithubAPI.accessToken()).responseJSON({ (request, response, JSON, error) in
-            
-            var userFeed : [String : AnyObject] = JSON as [String : AnyObject]
-            
-            //complete method...
+        Alamofire.request(.GET, feedUrl, parameters:accessTokenDictionary).responseJSON({ (request, response, JSON, error) in
+            if (error == nil) {
+                completion(githubEvents: JSON as [[String : AnyObject]]?, error: error)
+            }
         })
     }
     
+    //this method may not be necessary anymore...
+    func filterPushEventsFromAPIForUser(username: String, completion: (userFeed: UserFeed?, error: NSError?) -> ()) {
+        GithubAPI.getGithubEventsForUser(username) { (githubEvents, error) -> () in
+            if let githubEvents = githubEvents {
+                
+                var userFeed = UserFeed()
+                for githubEvent in githubEvents {
+                    
+                    if let githubEventType: AnyObject = githubEvent["type"] {
+                        
+                        if githubEventType as NSString  == "PushEvent" {
+                          //  println(githubEvent)
+                            var newEvent = Event(githubEventDictionary: githubEvent)
+                            userFeed.events.append(newEvent)
+                        }
+                    }
+                }
+                
+                completion(userFeed: userFeed, error: nil) //TODO: Deal with error term.
+            }
+        }
+    }
+   
+    //could take the username or could take a User object. Which should it be?
+    func filterPushEventsForAllUsers(users: [String], completion: (userFeed: UserFeed?, error: NSError?) -> ()) {
+        
+        var userFeed = UserFeed()
+
+        var userCount = 0
+        for username in users {
+            GithubAPI.getGithubEventsForUser(username, completion: { (githubEvents, error) -> () in
+                if let githubEvents = githubEvents {
+                    for githubEvent in githubEvents {
+                        if let githubEventType: AnyObject = githubEvent["type"] {
+                            if githubEventType as NSString == "PushEvent" {
+                                var newEvent = Event(githubEventDictionary: githubEvent)
+                                userFeed.events.append(newEvent)
+                            }
+                        }
+                    }
+                }
+                
+                userCount++
+                
+                if userCount == users.count {
+                    completion(userFeed: userFeed, error: nil) //TODO: Deal with error term.
+                }
+            })
+        }
+        
+    }
+    
+    
+        
     private class func accessToken() -> [String : String]? {
         
         if let githubAccessToken = GithubAPI.loadAccessToken().0 {
@@ -90,5 +144,5 @@ class GithubAPI {
         
         return nil
     }
-    
+
 }
